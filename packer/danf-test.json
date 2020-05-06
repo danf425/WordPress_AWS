@@ -23,7 +23,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "script": "scripts/bootstrap.sh",
+            "script": "files/bootstrap.sh",
             "pause_before": "10s"
         }
     ]

@@ -1,9 +1,7 @@
 {
     "variables": {
-        "aws_profile" = "solutions-architects",
         "aws_access_key": "AKIA2UJFJK3IPAVOWLSZ",
-        "aws_secret_key": "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"
-    },
+        "aws_secret_key": "Q2RhbVeuOvapKe8lPSY07f7U4Bd1vG64SpsVD0RB"    },
     "builders": [
         {
             "type": "amazon-ebs",
@@ -22,5 +20,12 @@
                 "Name": "danf-test"
             }
          }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "files/bootstrap.sh",
+            "pause_before": "10s"
+        }
     ]
 }
