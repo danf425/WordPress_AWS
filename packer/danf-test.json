@@ -1,0 +1,30 @@
+{
+    "variables": {
+        "aws_profile":  "solutions-architects"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "profile": "{{user `aws_profile`}}",
+            "region": "us-east-1",
+            "source_ami": "ami-0323c3dd2da7fb37d",
+            "instance_type": "t2.micro",
+            "ssh_timeout": "5m",
+            "ssh_username": "ec2-user",
+            "ami_name": "danf-example-{{timestamp}}",
+            "run_tags": {
+                "Name": "danf-packer"
+            },
+            "tags": {
+                "Name": "danf-test"
+            }
+         }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/bootstrap.sh",
+            "pause_before": "10s"
+        }
+    ]
+}
