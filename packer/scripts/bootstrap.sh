@@ -93,6 +93,9 @@ sed -i "s/NONCE_SALT',       'put your unique phrase here/NONCE_SALT',       '${
 # Make your website accessible from root 
 cp -r wordpress/* /var/www/html/
 
+#wget https://raw.githubusercontent.com/danf425/WordPress_AWS/master/packer/scripts/httpd.conf -O httpd.conf
+#sudo cp httpd.conf /etc/httpd/conf/httpd.conf
+#rm -rf httpd.conf
 
 sudo yum install php72-gd
 
