@@ -6,7 +6,7 @@
 
 
 # Modify you db password. Change "test"
-DBPASSWORD_ADMIN=April42590
+DBPASSWORD_ADMIN=test
 
 
 sudo yum update -y
@@ -81,22 +81,22 @@ sed -i "s/username_here/${MYSQL_USER}/g" wordpress/wp-config.php
 sed -i "s/password_here/${MYSQL_PW}/g" wordpress/wp-config.php
 
 # Security Keys. Change Them!
-# AUTH_KEY=some-unique-value1
-# SECURE_AUTH_KEY=some-unique-value2
-# LOGGED_IN_KEY=some-unique-value3
-# NONCE_KEY=some-unique-value4 
-# AUTH_SALT=some-unique-value5
-# SECURE_AUTH_SALT=some-unique-value6
-# LOGGED_IN_SALT=some-unique-value7
-# NONCE_SALT=some-unique-value8ue8
-# sed -i "s/AUTH_KEY',         'put your unique phrase here/AUTH_KEY',         '${AUTH_KEY}/g" wordpress/wp-config.php
-# sed -i "s/SECURE_AUTH_KEY',  'put your unique phrase here/SECURE_AUTH_KEY',  '${SECURE_AUTH_KEY}/g" wordpress/wp-config.php
-# sed -i "s/LOGGED_IN_KEY',    'put your unique phrase here/LOGGED_IN_KEY',    '${LOGGED_IN_KEY}/g" wordpress/wp-config.php
-# sed -i "s/NONCE_KEY',        'put your unique phrase here/NONCE_KEY',        '${NONCE_KEY}/g" wordpress/wp-config.php
-# sed -i "s/AUTH_SALT',        'put your unique phrase here/AUTH_SALT',        '${AUTH_SALT}/g" wordpress/wp-config.php
-# sed -i "s/SECURE_AUTH_SALT', 'put your unique phrase here/SECURE_AUTH_SALT', '${SECURE_AUTH_SALT}/g" wordpress/wp-config.php
-# sed -i "s/LOGGED_IN_SALT',   'put your unique phrase here/LOGGED_IN_SALT',   '${LOGGED_IN_SALT}/g" wordpress/wp-config.php
-# sed -i "s/NONCE_SALT',       'put your unique phrase here/NONCE_SALT',       '${NONCE_SALT}/g" wordpress/wp-config.php
+AUTH_KEY=some-unique-value1
+SECURE_AUTH_KEY=some-unique-value2
+LOGGED_IN_KEY=some-unique-value3
+NONCE_KEY=some-unique-value4 
+AUTH_SALT=some-unique-value5
+SECURE_AUTH_SALT=some-unique-value6
+LOGGED_IN_SALT=some-unique-value7
+NONCE_SALT=some-unique-value8ue8
+sed -i "s/AUTH_KEY',         'put your unique phrase here/AUTH_KEY',         '${AUTH_KEY}/g" wordpress/wp-config.php
+sed -i "s/SECURE_AUTH_KEY',  'put your unique phrase here/SECURE_AUTH_KEY',  '${SECURE_AUTH_KEY}/g" wordpress/wp-config.php
+sed -i "s/LOGGED_IN_KEY',    'put your unique phrase here/LOGGED_IN_KEY',    '${LOGGED_IN_KEY}/g" wordpress/wp-config.php
+sed -i "s/NONCE_KEY',        'put your unique phrase here/NONCE_KEY',        '${NONCE_KEY}/g" wordpress/wp-config.php
+sed -i "s/AUTH_SALT',        'put your unique phrase here/AUTH_SALT',        '${AUTH_SALT}/g" wordpress/wp-config.php
+sed -i "s/SECURE_AUTH_SALT', 'put your unique phrase here/SECURE_AUTH_SALT', '${SECURE_AUTH_SALT}/g" wordpress/wp-config.php
+sed -i "s/LOGGED_IN_SALT',   'put your unique phrase here/LOGGED_IN_SALT',   '${LOGGED_IN_SALT}/g" wordpress/wp-config.php
+sed -i "s/NONCE_SALT',       'put your unique phrase here/NONCE_SALT',       '${NONCE_SALT}/g" wordpress/wp-config.php
 
 # Make your website accessible from root 
 cp -r wordpress/* /var/www/html/
