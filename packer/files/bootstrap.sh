@@ -1,15 +1,15 @@
 #!/bin/bash
-# Modify you db password. Change "test"
-DBPASSWORD_ADMIN=test
+
 
 #LAMP Instructions: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-lamp-amazon-linux-2.html#securing-maria-db
 #WordPress Instructions:  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hosting-wordpress.html
 
-sudo yum update -y
 
-# Download Wordpress
-wget https://wordpress.org/latest.tar.gz
-tar -xzf latest.tar.gz
+# Modify you db password. Change "test"
+DBPASSWORD_ADMIN=April42590
+
+
+sudo yum update -y
 
 # Install LAMP
 sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
@@ -63,41 +63,47 @@ wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-all-languages.tar.gz
 mkdir phpMyAdmin && tar -xvzf phpMyAdmin-latest-all-languages.tar.gz -C phpMyAdmin --strip-components 1
 rm phpMyAdmin-latest-all-languages.tar.gz
 
+# Download and add sample Wordpress page
+wget https://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+cp wordpress/wp-config-sample.php wordpress/wp-config.php
 
-DBPASSWORD_ADMIN=test
+sleep 30
 MYSQL_USER=test
 MYSQL_PW=test
 DBNAME=test-db
-# Security Keys. Change Them!
-AUTH_KEY=some-unique-value1
-SECURE_AUTH_KEY=some-unique-value2
-LOGGED_IN_KEY=some-unique-value3
-NONCE_KEY=some-unique-value4 
-AUTH_SALT=some-unique-value5
-SECURE_AUTH_SALT=some-unique-value6
-LOGGED_IN_SALT=some-unique-value7
-NONCE_SALT=some-unique-value8
-# # Configure MySql
+
+# Configure MySql
 mysql -u root -p${DBPASSWORD_ADMIN} -e "CREATE USER \"${MYSQL_USER}\"@\"localhost\" IDENTIFIED BY \"${MYSQL_PW}\"; CREATE DATABASE \`${DBNAME}\`; GRANT ALL PRIVILEGES ON \`${DBNAME}\`.* TO \"${MYSQL_USER}\"@\"localhost\"; FLUSH PRIVILEGES;"
-# Configure Wordpress
-cp wordpress/wp-config-sample.php wordpress/wp-config.php
+
 sed -i "s/database_name_here/${DBNAME}/g" wordpress/wp-config.php
 sed -i "s/username_here/${MYSQL_USER}/g" wordpress/wp-config.php
 sed -i "s/password_here/${MYSQL_PW}/g" wordpress/wp-config.php
-sed -i "s/AUTH_KEY',         'put your unique phrase here/AUTH_KEY',         '${AUTH_KEY}/g" wordpress/wp-config.php
-sed -i "s/SECURE_AUTH_KEY',  'put your unique phrase here/SECURE_AUTH_KEY',  '${SECURE_AUTH_KEY}/g" wordpress/wp-config.php
-sed -i "s/LOGGED_IN_KEY',    'put your unique phrase here/LOGGED_IN_KEY',    '${LOGGED_IN_KEY}/g" wordpress/wp-config.php
-sed -i "s/NONCE_KEY',        'put your unique phrase here/NONCE_KEY',        '${NONCE_KEY}/g" wordpress/wp-config.php
-sed -i "s/AUTH_SALT',        'put your unique phrase here/AUTH_SALT',        '${AUTH_SALT}/g" wordpress/wp-config.php
-sed -i "s/SECURE_AUTH_SALT', 'put your unique phrase here/SECURE_AUTH_SALT', '${SECURE_AUTH_SALT}/g" wordpress/wp-config.php
-sed -i "s/LOGGED_IN_SALT',   'put your unique phrase here/LOGGED_IN_SALT',   '${LOGGED_IN_SALT}/g" wordpress/wp-config.php
-sed -i "s/NONCE_SALT',       'put your unique phrase here/NONCE_SALT',       '${NONCE_SALT}/g" wordpress/wp-config.php
+
+# Security Keys. Change Them!
+# AUTH_KEY=some-unique-value1
+# SECURE_AUTH_KEY=some-unique-value2
+# LOGGED_IN_KEY=some-unique-value3
+# NONCE_KEY=some-unique-value4 
+# AUTH_SALT=some-unique-value5
+# SECURE_AUTH_SALT=some-unique-value6
+# LOGGED_IN_SALT=some-unique-value7
+# NONCE_SALT=some-unique-value8ue8
+# sed -i "s/AUTH_KEY',         'put your unique phrase here/AUTH_KEY',         '${AUTH_KEY}/g" wordpress/wp-config.php
+# sed -i "s/SECURE_AUTH_KEY',  'put your unique phrase here/SECURE_AUTH_KEY',  '${SECURE_AUTH_KEY}/g" wordpress/wp-config.php
+# sed -i "s/LOGGED_IN_KEY',    'put your unique phrase here/LOGGED_IN_KEY',    '${LOGGED_IN_KEY}/g" wordpress/wp-config.php
+# sed -i "s/NONCE_KEY',        'put your unique phrase here/NONCE_KEY',        '${NONCE_KEY}/g" wordpress/wp-config.php
+# sed -i "s/AUTH_SALT',        'put your unique phrase here/AUTH_SALT',        '${AUTH_SALT}/g" wordpress/wp-config.php
+# sed -i "s/SECURE_AUTH_SALT', 'put your unique phrase here/SECURE_AUTH_SALT', '${SECURE_AUTH_SALT}/g" wordpress/wp-config.php
+# sed -i "s/LOGGED_IN_SALT',   'put your unique phrase here/LOGGED_IN_SALT',   '${LOGGED_IN_SALT}/g" wordpress/wp-config.php
+# sed -i "s/NONCE_SALT',       'put your unique phrase here/NONCE_SALT',       '${NONCE_SALT}/g" wordpress/wp-config.php
+
 # Make your website accessible from root 
 cp -r wordpress/* /var/www/html/
 
-wget https://raw.githubusercontent.com/danf425/WordPress_AWS/master/packer/files/httpd.conf
-sudo cp httpd.conf /etc/httpd/conf/httpd.conf
-rm -rf httpd.conf
+# wget https://raw.githubusercontent.com/danf425/WordPress_AWS/master/packer/files/httpd.conf
+# sudo cp httpd.conf /etc/httpd/conf/httpd.conf
+# rm -rf httpd.conf
 
-sudo yum install php72-gd
+# sudo yum install php72-gd
 
