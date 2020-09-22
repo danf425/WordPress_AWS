@@ -16,7 +16,12 @@
                 "Name": "danf-packer-wp-test"
             },
             "tags": {
-                "X-Application": "danf-test"
+                "X-Application": "danf-test",
+                "X-Dept"       : "danf",
+                "X-Customer"   : "danf",
+                "X-Project"    : "danf",
+                "X-Contact"    : "danf@chef.io",
+                "X-TTL"        : "2"
             }
          }
     ],

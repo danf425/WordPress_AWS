@@ -1,6 +1,5 @@
-# Terraform Skeleton
+Initial Terraform Skeleton: https://github.com/danf425/terraform_skeleton
 
-## Skeleton to create an AWS image
 
 ##### SETUP:
 1. Clone this repo (where project1 is your project name):  
