@@ -17,7 +17,7 @@
             },
             "tags": {
                 "X-Application": "danf-test"
-                "X-Dept"       : "danf-test"
+                "X-Dept": "danf-test"
                 "X-Contact"    : "danf425@gmail.com"
                 "X-TTLt"       : "danf-test"
             }
